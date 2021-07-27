@@ -33,65 +33,65 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_split_3x7_4(
-        CTL_TAB,  KC_Q   , KC_W   , KC_F   , KC_P   , KC_B   ,   KC_LPRN,    KC_RPRN,   KC_J     , KC_L   , KC_U   , KC_Y   , KC_SLASH , KC_EQUAL,
-        KC_GESC,  KC_A   , KC_R   , KC_S   , KC_T   , KC_G   ,   KC_LBRC,    KC_RBRC,   KC_K     , KC_N   , KC_E   , KC_I   , KC_O     , KC_QUOT,
-        KC_LCTRL, KC_Z   , KC_X   , KC_C   , KC_D   , KC_V   ,   KC_ENTER,   KC_RSHIFT,   KC_M     , KC_H   , KC_COMM, KC_DOT , KC_SCOLON, ADJUST,
-                                    KC_LGUI, LOWER  , KC_BSPACE, KC_BSPACE,  KC_DELETE, KC_SPACE, RAISE  , KC_RALT
+        CTL_TAB,         KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,    KC_LPRN,      KC_RPRN,    KC_J     , KC_L   , KC_U   , KC_Y   , KC_SLASH , KC_EQUAL,
+        KC_GESC,         KC_A,   KC_R,   KC_S,   KC_T,   KC_G,    KC_LBRC,      KC_RBRC,    KC_K     , KC_N   , KC_E   , KC_I   , KC_O     , KC_QUOT,
+        LCTL_T(KC_BSLS), KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,    MO(_LOWER),   MO(_RAISE),  KC_M     , KC_H   , KC_COMM, KC_DOT , KC_SCOLON, KC_MINS,
+                                    KC_LGUI, LOWER  , KC_BSPACE, KC_BSPACE,     KC_DELETE, KC_SPACE, RAISE  , KC_RALT
     ),
     [_LOWER] = LAYOUT_split_3x7_4(
-        KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , _______,    _______, KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_BSLS,
-        _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, KC_MINS, KC_EQL , _______,
-        _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______,
-                                   _______, _______, _______, _______,    _______, _______, _______, _______
+        ______, KQ_AT,   ______,   KC_UP,  ______, ______, ______,    ______, ______, ______, ______, ______, ______, ______,
+        ______, ______, KC_LEFT, KC_DOWN, KC_RGHT, ______, ______,    ______, ______, ______, ______, ______, ______, ______,
+        ______, ______,  ______,  ______,  ______, ______, ______,    ______, ______, ______, ______, ______, ______, ______,
+                                  ______,  ______, ______, ______,    ______, ______, ______, ______
     ),
     [_RAISE] = LAYOUT_split_3x7_4(
-        KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , _______,    _______, KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_BSLS,
-        _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, KC_MINS, KC_EQL , _______,
-        _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______,
-                                   _______, _______, _______, _______,    _______, _______, _______, _______
+        ______, KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, ______,    ______, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, ______,
+        ______, KC_1,     KC_2,   KC_3,   KC_4,   KC_5, ______,    ______,   KC_6,   KC_7,   KC_8,   KC_9,   KC_0, ______,
+        ______, KC_F1,   KC_F2,  KC_F3,  KC_F4,  KC_F5, ______,    ______,  KC_F6,  KC_F7,  KC_F8,  KC_F9, KC_F10, ______,
+                                ______, ______, ______, ______,    ______, ______, ______, ______
     ),
     [_ADJUST] = LAYOUT_split_3x7_4(
-        _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_LCBR,    KC_RCBR, KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , _______,
-        _______, KC_F11 , KC_F12 , _______, _______, _______, KC_LCBR,    KC_RCBR, KC_HOME, KC_PGDN, KC_PGUP, KC_END , _______, _______,
-        _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______,
-                                   _______, _______, _______, _______,    _______, _______, _______, _______
+        ______, ______, ______, ______, ______, ______, ______,    ______, ______, ______, ______, ______, ______, ______,
+        ______, ______, ______, ______, ______, ______, ______,    ______, ______, ______, ______, ______, ______, ______,
+        ______, ______, ______, ______, ______, ______, ______,    ______, ______, ______, ______, ______, ______, ______,
+                                ______, ______, ______, ______,    ______, ______, ______, ______
     )
 };
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed) {
-        // set_timelog();
-    }
+/* bool process_record_user(uint16_t keycode, keyrecord_t *record) { */
+/*     if (record->event.pressed) { */
+/*         // set_timelog(); */
+/*     } */
 
-    switch (keycode) {
-        case LOWER:
-            if (record->event.pressed) {
-                layer_on(_LOWER);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
-            } else {
-                layer_off(_LOWER);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
-            }
-            return false;
-            break;
-        case RAISE:
-            if (record->event.pressed) {
-                layer_on(_RAISE);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
-            } else {
-                layer_off(_RAISE);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
-            }
-            return false;
-            break;
-        case ADJUST:
-            if (record->event.pressed) {
-                layer_on(_ADJUST);
-            } else {
-                layer_off(_ADJUST);
-            }
-            return false;
-            break;
-    }
-    return true;
-}
+/*     switch (keycode) { */
+/*         case LOWER: */
+/*             if (record->event.pressed) { */
+/*                 layer_on(_LOWER); */
+/*                 update_tri_layer(_LOWER, _RAISE, _ADJUST); */
+/*             } else { */
+/*                 layer_off(_LOWER); */
+/*                 update_tri_layer(_LOWER, _RAISE, _ADJUST); */
+/*             } */
+/*             return false; */
+/*             break; */
+/*         case RAISE: */
+/*             if (record->event.pressed) { */
+/*                 layer_on(_RAISE); */
+/*                 update_tri_layer(_LOWER, _RAISE, _ADJUST); */
+/*             } else { */
+/*                 layer_off(_RAISE); */
+/*                 update_tri_layer(_LOWER, _RAISE, _ADJUST); */
+/*             } */
+/*             return false; */
+/*             break; */
+/*         case ADJUST: */
+/*             if (record->event.pressed) { */
+/*                 layer_on(_ADJUST); */
+/*             } else { */
+/*                 layer_off(_ADJUST); */
+/*             } */
+/*             return false; */
+/*             break; */
+/*     } */
+/*     return true; */
+/* } */
