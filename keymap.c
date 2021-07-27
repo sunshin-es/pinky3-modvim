@@ -22,6 +22,27 @@ enum layer_names {
     _ADJUST
 };
 
+enum unicode_names {
+    ae,
+    Ae,
+    oe,
+    Oe,
+    ue,
+    Ue,
+    ss
+};
+
+const uint32_t PROGMEM unicode_map[] = {
+    [ae] = 0x00E4,
+    [Ae] = 0x00C4,
+    [oe] = 0x00F6,
+    [Oe] = 0x00D6,
+    [ue] = 0x00FC,
+    [Ue] = 0x00DC,
+    [ss] = 0x00DF
+};
+
+
 enum custom_keycodes {
     OP_ARROW = SAFE_RANGE,
 };
@@ -32,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,         KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,    KC_LPRN,      KC_RPRN,    KC_J     , KC_L   , KC_U   , KC_Y   , KC_SLASH , KC_EQUAL,
         KC_GESC,         KC_A,   KC_R,   KC_S,   KC_T,   KC_G,    KC_LBRC,      KC_RBRC,    KC_K     , KC_N   , KC_E   , KC_I   , KC_O     , KC_QUOT,
         LCTL_T(KC_BSLS), KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,    MO(_LOWER),   MO(_RAISE),  KC_M     , KC_H   , KC_COMM, KC_DOT , KC_SCOLON, KC_MINS,
-                                    KC_LGUI, XXXXXXX, KC_BSPACE, KC_DELETE,     KC_SFTENT, KC_SPACE, XXXXXXX, KC_RALT
+                                    KC_LGUI, MO(_ADJUST), KC_BSPACE, KC_DELETE,     KC_SFTENT, KC_SPACE, MO(_ADJUST), KC_RALT
     ),
     [_LOWER] = LAYOUT_split_3x7_4(
         _______, KC_AT,   _______,   KC_UP,  _______, _______, _______,    OP_ARROW, _______, _______, _______, _______, _______, RESET,
@@ -47,9 +68,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 _______, _______, _______, _______,    _______, _______, _______, _______
     ),
     [_ADJUST] = LAYOUT_split_3x7_4(
-        _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, XP(ue,Ue), _______, _______, _______,
+        _______, XP(ae,Ae), _______, XP(ss,ss), _______, _______, _______,    _______, _______, _______, _______, _______, XP(oe,Oe), _______,
+        KC_LSHIFT, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, KC_RSHIFT,
                                    _______, _______, _______, _______,    _______, _______, _______, _______
     )
 };
