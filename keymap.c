@@ -1,4 +1,4 @@
-/* Copyright 2018 'Masayuki Sunahara'
+/* Copyright 2021 'David Sunshine'
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -58,40 +58,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
-/* bool process_record_user(uint16_t keycode, keyrecord_t *record) { */
-/*     if (record->event.pressed) { */
-/*         // set_timelog(); */
-/*     } */
-
-/*     switch (keycode) { */
-/*         case LOWER: */
-/*             if (record->event.pressed) { */
-/*                 layer_on(_LOWER); */
-/*                 update_tri_layer(_LOWER, _RAISE, _ADJUST); */
-/*             } else { */
-/*                 layer_off(_LOWER); */
-/*                 update_tri_layer(_LOWER, _RAISE, _ADJUST); */
-/*             } */
-/*             return false; */
-/*             break; */
-/*         case RAISE: */
-/*             if (record->event.pressed) { */
-/*                 layer_on(_RAISE); */
-/*                 update_tri_layer(_LOWER, _RAISE, _ADJUST); */
-/*             } else { */
-/*                 layer_off(_RAISE); */
-/*                 update_tri_layer(_LOWER, _RAISE, _ADJUST); */
-/*             } */
-/*             return false; */
-/*             break; */
-/*         case ADJUST: */
-/*             if (record->event.pressed) { */
-/*                 layer_on(_ADJUST); */
-/*             } else { */
-/*                 layer_off(_ADJUST); */
-/*             } */
-/*             return false; */
-/*             break; */
-/*     } */
-/*     return true; */
-/* } */
