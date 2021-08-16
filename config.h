@@ -31,3 +31,6 @@
 #define RETRO_TAPPPING
 
 #define UNICODE_SELECTED_MODES UC_WINC
+
+/* Redefine space cadet enter to use space instead */
+#define SFTENT_KEY KC_SPACE

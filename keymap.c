@@ -47,13 +47,16 @@ enum custom_keycodes {
     OP_ARROW = SAFE_RANGE,
 };
 
+/* Give the space cadet enter a new name since we will tweak it to work with
+ * space */
+#define KC_SFTSPC KC_SFTENT
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_split_3x7_4(
         KC_TAB,         KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,    KC_LPRN,      KC_RPRN,    KC_J     , KC_L   , KC_U   , KC_Y   , KC_SLASH , KC_EQUAL,
         KC_GESC,         KC_A,   KC_R,   KC_S,   KC_T,   KC_G,    KC_LBRC,      KC_RBRC,    KC_K     , KC_N   , KC_E   , KC_I   , KC_O     , KC_QUOT,
         LCTL_T(KC_BSLS), KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,    MO(_LOWER),   MO(_RAISE),  KC_M     , KC_H   , KC_COMM, KC_DOT , KC_SCOLON, KC_MINS,
-                                    KC_LGUI, MO(_ADJUST), KC_BSPACE, KC_DELETE,     KC_SFTENT, KC_SPACE, MO(_ADJUST), KC_RALT
+                                    KC_LGUI, MO(_ADJUST), KC_BSPACE, KC_DELETE,     KC_ENT, KC_SFTSPC, MO(_ADJUST), KC_RALT
     ),
     [_LOWER] = LAYOUT_split_3x7_4(
         _______, KC_AT,   _______,   KC_UP,  _______, _______, _______,    OP_ARROW, _______, _______, _______, _______, _______, RESET,
