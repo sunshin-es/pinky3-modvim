@@ -15,12 +15,10 @@
  */
 #include QMK_KEYBOARD_H
 
-enum layer_names {
-    _QWERTY,
-    _LOWER,
-    _RAISE,
-    _ADJUST
-};
+#define _MODDH  0
+#define _LOWER  1
+#define _RAISE  2
+#define _ADJUST 3
 
 enum unicode_names {
     ae,
@@ -45,6 +43,9 @@ const uint32_t PROGMEM unicode_map[] = {
 
 enum custom_keycodes {
     OP_ARROW = SAFE_RANGE,
+    LOWER,
+    RAISE,
+    ADJUST,
 };
 
 /* Tap dance declarations */
@@ -78,11 +79,11 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define KC_SFTSPC KC_SFTENT
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_QWERTY] = LAYOUT_split_3x7_4(
+    [_MODDH] = LAYOUT_split_3x7_4(
         KC_TAB,          KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,    KC_LPRN,      KC_RPRN,    KC_J     , KC_L   , KC_U   , KC_Y   , KC_SLASH , KC_EQUAL,
         TD(TD_ESC),      KC_A,   KC_R,   KC_S,   KC_T,   KC_G,    KC_LBRC,      KC_RBRC,    KC_K     , KC_N   , KC_E   , KC_I   , KC_O     , KC_QUOT,
         LCTL_T(KC_BSLS), KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,    MO(_LOWER),   MO(_RAISE),  KC_M     , KC_H   , KC_COMM, KC_DOT , KC_SCOLON, KC_MINS,
-                              KC_LGUI, MO(_ADJUST), TD(TD_BSPACE), KC_DELETE,     KC_ENT, KC_SFTSPC, MO(_ADJUST), KC_RALT
+                              KC_LGUI, MO(_ADJUST), TD(TD_BSPACE), LT(_LOWER,KC_DELETE),     LT(_RAISE,KC_ENT), KC_SFTSPC, MO(_ADJUST), KC_RALT
     ),
     [_LOWER] = LAYOUT_split_3x7_4(
         _______, KC_AT,   _______, _______,  _______, _______, _______,    OP_ARROW, _______, KC_LCBR, KC_RCBR, _______, _______, _______,
@@ -103,6 +104,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                        _______, _______, _______, _______,    _______, _______, _______, _______
     )
 };
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+      return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
