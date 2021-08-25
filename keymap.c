@@ -58,10 +58,10 @@ enum {
 void td_esc(qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
         SEND_STRING(SS_TAP(X_ESC));
-        reset_tap_dance(state);
     }
     else if (state->count == 2) {
         SEND_STRING(SS_TAP(X_ESC)":");
+        reset_tap_dance(state);
     }
 }
 
@@ -73,17 +73,12 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 };
 
 
-
-/* Give the space cadet enter a new name since we will tweak it to work with
- * space */
-#define KC_SFTSPC KC_SFTENT
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MODDH] = LAYOUT_split_3x7_4(
-        KC_TAB,          KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,    KC_LPRN,      KC_RPRN,    KC_J     , KC_L   , KC_U   , KC_Y   , KC_SLASH , KC_EQUAL,
-        TD(TD_ESC),      KC_A,   KC_R,   KC_S,   KC_T,   KC_G,    KC_LBRC,      KC_RBRC,    KC_K     , KC_N   , KC_E   , KC_I   , KC_O     , KC_QUOT,
-        LCTL_T(KC_BSLS), KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,    MO(_LOWER),   MO(_RAISE),  KC_M     , KC_H   , KC_COMM, KC_DOT , KC_SCOLON, KC_MINS,
-                              KC_LGUI, MO(_ADJUST), TD(TD_BSPACE), LT(_LOWER,KC_DELETE),     LT(_RAISE,KC_ENT), KC_SFTSPC, MO(_ADJUST), KC_RALT
+        KC_TAB,          KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,    KC_NO,         KC_NO,    KC_J,  KC_L,  KC_U,    KC_Y,   KC_SLASH,  KC_EQUAL,
+        TD(TD_ESC),      KC_A,   KC_R,   KC_S,   KC_T,   KC_G,    KC_GRAVE,      KC_MINS,  KC_K,  KC_N,  KC_E,    KC_I,   KC_O,      KC_QUOT,
+        LCTL_T(KC_BSLS), KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,    KC_NO,         KC_NO,    KC_M,  KC_H,  KC_COMM, KC_DOT, KC_SCOLON, OSM(MOD_LSFT),
+              KC_LGUI, MO(_ADJUST), TD(TD_BSPACE), LT(_LOWER,KC_DELETE),         LT(_RAISE,KC_ENT), KC_SPACE, MO(_ADJUST), KC_RALT
     ),
     [_LOWER] = LAYOUT_split_3x7_4(
         _______, KC_AT,   _______, _______,  _______, _______, _______,    OP_ARROW, _______, KC_LCBR, KC_RCBR, _______, _______, _______,
