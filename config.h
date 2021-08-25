@@ -27,10 +27,11 @@
 #define USE_SERIAL_PD2
 
 #define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 150
-#define RETRO_TAPPPING
+#define TAPPING_TERM 175
+/* #define RETRO_TAPPPING */
+#define PERMISSIVE_HOLD
 
 #define UNICODE_SELECTED_MODES UC_WINC
 
-#define ONESHOT_TAP_TOGGLE 2  /* Tapping this number of times holds the key until tapped once again. */
+#define ONESHOT_TAP_TOGGLE 3  /* Tapping this number of times holds the key until tapped once again. */
 #define ONESHOT_TIMEOUT 5000  /* Time (in ms) before the one shot key is released */
