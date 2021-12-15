@@ -1,6 +1,27 @@
 # MODVIM
 Pinky3 Keyboard based on Colemak Mod DH with focus on support for VIM and German.
 
+## Installation
+After checkint out this repository a symlink should be created to the keymap
+section of the QMK directory:
+```bash
+ln -s ~/<PATH TO REPO>/pinky3-modvim/ ~/<QMK>/keyboards/pinky/3/keymaps/modvim
+```
+
+### Building
+The code can be compiled:
+```bash
+qmk compile -kb pinky/3 -km modvim
+```
+
+### Flashing
+The code can finally be flashed:
+```bash
+qmk flash -kb pinky/3 -km modvim -bl dfu
+```
+
+**Note:** The `-bl dfu` depends on the HW used (i.e. it may not be needed)
+
 ## layers
 
 ![default](design/images/pinky3-default.jpg)
