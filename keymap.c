@@ -16,11 +16,11 @@
 #include QMK_KEYBOARD_H
 
 #define _MODDH  0
-#define _LOWER  1
-#define _RAISE  2
+#define _SYMBOL  1
+#define _NUMBER  2
 #define _ADJUST 3
 
-/* Special Configurations for the home row keys */
+/* Special defines for the home row keys */
 /* Left Hand */
 #define MT_A LSFT_T(KC_A)
 #define MT_R LCTL_T(KC_R)
@@ -31,6 +31,17 @@
 #define MT_E RALT_T(KC_E)
 #define MT_I RCTL_T(KC_I)
 #define MT_O RSFT_T(KC_O)
+
+/* Special defines for the thumbs */
+#define LT_ENT LT(_SYMBOL, KC_ENT)
+#define LT_SPC LT(_NUMBER, KC_SPC)
+
+/* Special defines for German characters */
+#define DE_AE XP(ae, Ae)
+#define DE_SS XP(ss, ss)
+#define DE_UE XP(ue, Ue)
+#define DE_OE XP(oe, Oe)
+
 
 enum unicode_names {
     ae,
@@ -55,8 +66,8 @@ const uint32_t PROGMEM unicode_map[] = {
 
 enum custom_keycodes {
     OP_ARROW = SAFE_RANGE,
-    LOWER,
-    RAISE,
+    SYMBOL,
+    NUMBER,
     ADJUST,
 };
 
@@ -87,33 +98,35 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MODDH] = LAYOUT_split_3x7_4(
-        KC_TAB,          KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,    KC_NO,         KC_NO,    KC_J,  KC_L,  KC_U,    KC_Y,   KC_SLASH,  KC_EQUAL,
-        TD(TD_ESC),      MT_A,   MT_R,   MT_S,   MT_T,   KC_G,    KC_GRAVE,      KC_MINS,  KC_K,  MT_N,  MT_E,    MT_I,   MT_O,      KC_QUOT,
-        LCTL_T(KC_BSLS), KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,    KC_NO,         KC_NO,    KC_M,  KC_H,  KC_COMM, KC_DOT, KC_SCOLON, OSM(MOD_LSFT),
-              KC_LGUI, MO(_ADJUST), TD(TD_BSPACE), LT(_LOWER,KC_DELETE),         LT(_RAISE,KC_ENT), KC_SPACE, MO(_ADJUST), KC_RALT
+        KC_NO,   KC_Q,    KC_W,    KC_F,     KC_P,   KC_B,   KC_NO,         KC_NO,     KC_J,  KC_L,     KC_U,    KC_Y,    KC_QUOT,  KC_NO,
+        KC_NO,   MT_A,    MT_R,    MT_S,     MT_T,   KC_G,   KC_NO,         KC_NO,     KC_K,  MT_N,     MT_E,    MT_I,       MT_O,  KC_NO,
+        KC_NO,   KC_Z,    KC_X,    KC_C,     KC_D,   KC_V,   KC_NO,         KC_NO,     KC_M,  KC_H,  KC_COMM,  KC_DOT,  KC_SCOLON,  KC_NO,
+                                   KC_NO, KC_GESC, LT_ENT,  KC_TAB,         KC_BSPC, LT_SPC, KC_UP,    KC_NO
     ),
-    [_LOWER] = LAYOUT_split_3x7_4(
-        _______, KC_AT,   _______, _______,  _______, _______, _______,    OP_ARROW, _______, KC_LCBR, KC_RCBR, _______, _______, _______,
-        _______, KC_LEFT, KC_DOWN,   KC_UP,  KC_RGHT, _______, _______,    _______,  _______, KC_LPRN, KC_RPRN, _______, _______, _______,
+    [_SYMBOL] = LAYOUT_split_3x7_4(
+        _______, KC_AT,   _______, _______,  _______, _______, _______,    OP_ARROW, KC_MINUS, KC_LCBR, KC_RCBR, OP_ARROW, _______, _______,
+        KC_CIRC, KC_LEFT, KC_DOWN,   KC_UP,  KC_RGHT, KC_DLR,  _______,    _______,  KC_UNDS, KC_LPRN, KC_RPRN, KC_SLASH, KC_QUES, _______,
         _______, _______, _______, _______,  _______, _______, _______,    _______,  _______, KC_LBRC, KC_RBRC, _______, _______, _______,
-                                   _______,  _______, _______, _______,    _______,  _______, _______, _______
+                                   _______,  _______, _______, _______,    KC_DEL,  _______, _______, _______
     ),
-    [_RAISE] = LAYOUT_split_3x7_4(
-        _______, KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, _______,    _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
-        _______, KC_1,    KC_2,  KC_3,    KC_4,   KC_5,    _______,    _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-        _______, KC_F1,   KC_F2, KC_F3,   KC_F4,  KC_F5,   _______,    _______, KC_F6,   KC_F7,   _______, _______, _______, _______,
-                                _______, _______, _______, _______,    _______, _______, _______, _______
+    [_NUMBER] = LAYOUT_split_3x7_4(
+        _______, _______, _______, _______, _______, _______, _______,    _______, KC_7, KC_8, KC_9, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,    _______, KC_4, KC_5, KC_6, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,       KC_0, KC_1, KC_2, KC_3, _______, _______, _______,
+                                   _______, _______, _______, _______,    _______, _______, _______, _______
     ),
     [_ADJUST] = LAYOUT_split_3x7_4(
-        _______,     _______, _______, _______,         _______, _______,         _______,    _______, _______, _______, XP(ue,Ue), _______, _______,     _______,
-        _______,   XP(ae,Ae), _______, XP(ss,ss),       _______, _______,         _______,    _______, _______, _______, _______,   _______, XP(oe,Oe),   _______,
+        _______,     _______, _______, _______,         _______, _______,         _______,    _______, _______, _______, DE_UE, _______, _______,     _______,
+        _______,       DE_AE, _______,   DE_SS,       _______, _______,         _______,    _______, _______, _______, _______,   _______, DE_OE,   _______,
         KC_LSHIFT,   _______, _______, LCTL(KC_INSERT), _______, LSFT(KC_INSERT), _______,    _______, _______, _______, _______,   _______, _______,   KC_RSHIFT,
                                                        _______, _______, _______, _______,    _______, _______, _______, _______
     )
 };
 
+/* If _SYMBOL and _NUMBER are active at the same time change to the _ADJUST
+ * layer */
 layer_state_t layer_state_set_user(layer_state_t state) {
-      return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+      return update_tri_layer_state(state, _SYMBOL, _NUMBER, _ADJUST);
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
