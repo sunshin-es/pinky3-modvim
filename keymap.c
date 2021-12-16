@@ -20,6 +20,18 @@
 #define _RAISE  2
 #define _ADJUST 3
 
+/* Special Configurations for the home row keys */
+/* Left Hand */
+#define MT_A LSFT_T(KC_A)
+#define MT_R LCTL_T(KC_R)
+#define MT_S LALT_T(KC_S)
+#define MT_T LGUI_T(KC_T)
+/* Right Hand */
+#define MT_N RGUI_T(KC_N)
+#define MT_E RALT_T(KC_E)
+#define MT_I RCTL_T(KC_I)
+#define MT_O RSFT_T(KC_O)
+
 enum unicode_names {
     ae,
     Ae,
@@ -76,7 +88,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MODDH] = LAYOUT_split_3x7_4(
         KC_TAB,          KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,    KC_NO,         KC_NO,    KC_J,  KC_L,  KC_U,    KC_Y,   KC_SLASH,  KC_EQUAL,
-        TD(TD_ESC),      KC_A,   KC_R,   KC_S,   KC_T,   KC_G,    KC_GRAVE,      KC_MINS,  KC_K,  KC_N,  KC_E,    KC_I,   KC_O,      KC_QUOT,
+        TD(TD_ESC),      MT_A,   MT_R,   MT_S,   MT_T,   KC_G,    KC_GRAVE,      KC_MINS,  KC_K,  MT_N,  MT_E,    MT_I,   MT_O,      KC_QUOT,
         LCTL_T(KC_BSLS), KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,    KC_NO,         KC_NO,    KC_M,  KC_H,  KC_COMM, KC_DOT, KC_SCOLON, OSM(MOD_LSFT),
               KC_LGUI, MO(_ADJUST), TD(TD_BSPACE), LT(_LOWER,KC_DELETE),         LT(_RAISE,KC_ENT), KC_SPACE, MO(_ADJUST), KC_RALT
     ),
