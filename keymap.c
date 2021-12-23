@@ -101,18 +101,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,   KC_Q,    KC_W,    KC_F,     KC_P,   KC_B,   KC_NO,         KC_NO,     KC_J,  KC_L,     KC_U,    KC_Y,    KC_QUOT,  KC_NO,
         KC_NO,   MT_A,    MT_R,    MT_S,     MT_T,   KC_G,   KC_NO,         KC_NO,     KC_K,  MT_N,     MT_E,    MT_I,       MT_O,  KC_NO,
         KC_NO,   KC_Z,    KC_X,    KC_C,     KC_D,   KC_V,   KC_NO,         KC_NO,     KC_M,  KC_H,  KC_COMM,  KC_DOT,  KC_SCOLON,  KC_NO,
-                                   KC_NO, KC_GESC, LT_ENT,  KC_TAB,         KC_BSPC, LT_SPC, KC_UP,    KC_NO
+                                   KC_NO,  KC_ESC, LT_ENT,  KC_TAB,         KC_BSPC, LT_SPC, KC_UP,    KC_NO
     ),
     [_SYMBOL] = LAYOUT_split_3x7_4(
-        _______, KC_AT,   _______, _______,  _______, _______, _______,    OP_ARROW, KC_MINUS, KC_LCBR, KC_RCBR, OP_ARROW, _______, _______,
-        KC_CIRC, KC_LEFT, KC_DOWN,   KC_UP,  KC_RGHT, KC_DLR,  _______,    _______,  KC_UNDS, KC_LPRN, KC_RPRN, KC_SLASH, KC_QUES, _______,
-        _______, _______, _______, _______,  _______, _______, _______,    _______,  _______, KC_LBRC, KC_RBRC, _______, _______, _______,
-                                   _______,  _______, _______, _______,    KC_DEL,  _______, _______, _______
+        _______, KC_AT,   KC_EXLM, KC_HASH,  KC_PERC, KC_PIPE,   _______,    _______, KC_MINUS, KC_LCBR, KC_RCBR, OP_ARROW, KC_EQUAL, _______,
+        _______, KC_LEFT, KC_DOWN,   KC_UP,  KC_RGHT, KC_DLR,    _______,    _______,  KC_UNDS, KC_LPRN, KC_RPRN, KC_SLASH, KC_QUES,  _______,
+        _______, KC_CIRC, _______, KC_TILD,   KC_GRV, KC_BSLASH, _______,    _______,  KC_ASTR, KC_LBRC, KC_RBRC, KC_AMPR,  KC_PLUS,  _______,
+                                   _______,  _______, _______,   _______,    KC_DEL,  _______, _______, _______
     ),
     [_NUMBER] = LAYOUT_split_3x7_4(
-        _______, _______, _______, _______, _______, _______, _______,    _______, KC_7, KC_8, KC_9, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______,    _______, KC_4, KC_5, KC_6, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______,       KC_0, KC_1, KC_2, KC_3, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,    _______, _______, KC_7, KC_8, KC_9, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,    _______,    KC_0, KC_4, KC_5, KC_6, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,    _______, _______, KC_1, KC_2, KC_3, _______, _______,
                                    _______, _______, _______, _______,    _______, _______, _______, _______
     ),
     [_ADJUST] = LAYOUT_split_3x7_4(
