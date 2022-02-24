@@ -22,7 +22,18 @@ qmk flash -kb pinky/3 -km modvim -bl dfu
 
 **Note:** The `-bl dfu` depends on the HW used (i.e. it may not be needed)
 
-## layers
+## Leader Key
+The following leader key mappings have been implemented:
+| Leader Key | Mapping |
+| ---------- | ------- |
+| <kbd>i</kbd><kbd>a</kbd> | <kbd>LGUI</kbd> + <kbd>1</kbd> |
+| <kbd>i</kbd><kbd>r</kbd> | <kbd>LGUI</kbd> + <kbd>2</kbd> |
+| <kbd>i</kbd><kbd>s</kbd> | <kbd>LGUI</kbd> + <kbd>3</kbd> |
+| <kbd>i</kbd><kbd>t</kbd> | <kbd>LGUI</kbd> + <kbd>4</kbd> |
+| <kbd>i</kbd><kbd>g</kbd> | <kbd>LGUI</kbd> + <kbd>5</kbd> |
+| <kbd>q</kbd> | <kbd>LGUI</kbd> + <kbd>Q</kbd> |
+
+## Layers
 
 ![default](design/images/layout.jpg)
 
