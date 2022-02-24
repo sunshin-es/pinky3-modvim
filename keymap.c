@@ -15,10 +15,10 @@
  */
 #include QMK_KEYBOARD_H
 
-#define _MODDH  0
+#define _MODDH   0
 #define _SYMBOL  1
 #define _NUMBER  2
-#define _ADJUST 3
+#define _ADJUST  3
 
 /* Special defines for the home row keys */
 /* Left Hand */
@@ -41,7 +41,6 @@
 #define DE_SS XP(ss, ss)
 #define DE_UE XP(ue, Ue)
 #define DE_OE XP(oe, Oe)
-
 
 enum unicode_names {
     ae,
@@ -71,36 +70,13 @@ enum custom_keycodes {
     ADJUST,
 };
 
-/* Tap dance declarations */
-enum {
-    TD_BSPACE,
-    TD_ESC,
-};
-
-// Tap Dance functions
-void td_esc(qk_tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        SEND_STRING(SS_TAP(X_ESC));
-    }
-    else if (state->count == 2) {
-        SEND_STRING(SS_TAP(X_ESC)":");
-        reset_tap_dance(state);
-    }
-}
-
-// Tap Dance definitions
-qk_tap_dance_action_t tap_dance_actions[] = {
-    // Tap once for backspace, twice for ctrl + backspace
-    [TD_BSPACE] = ACTION_TAP_DANCE_DOUBLE(KC_BSPACE, LCTL(KC_BSPACE)),
-    [TD_ESC] = ACTION_TAP_DANCE_FN(td_esc),
-};
-
+LEADER_EXTERNS();
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MODDH] = LAYOUT_split_3x7_4(
         KC_NO,   KC_Q,    KC_W,    KC_F,     KC_P,   KC_B,   KC_NO,         KC_NO,     KC_J,  KC_L,     KC_U,    KC_Y,    KC_QUOT,  KC_NO,
         KC_NO,   MT_A,    MT_R,    MT_S,     MT_T,   KC_G,   KC_NO,         KC_NO,     KC_K,  MT_N,     MT_E,    MT_I,       MT_O,  KC_NO,
-        KC_NO,   KC_Z,    KC_X,    KC_C,     KC_D,   KC_V,   KC_NO,         KC_NO,     KC_M,  KC_H,  KC_COMM,  KC_DOT,  KC_SCOLON,  KC_NO,
+        KC_NO,   KC_Z,    KC_X,    KC_C,     KC_D,   KC_V, KC_HOME,         KC_LEAD,   KC_M,  KC_H,  KC_COMM,  KC_DOT,  KC_SCOLON,  KC_NO,
                                    KC_NO,  KC_ESC, LT_ENT,  KC_TAB,         KC_BSPC, LT_SPC, KC_UP,    KC_NO
     ),
     [_SYMBOL] = LAYOUT_split_3x7_4(
@@ -143,3 +119,49 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true; // continue normal processing (we did not replace or alter any functionality)
 }
 
+
+void matrix_scan_user(void) {
+  LEADER_DICTIONARY() {
+    leading = false;
+    leader_end();
+
+    SEQ_ONE_KEY(KC_Q) {
+      register_code(KC_LGUI);
+      register_code(KC_LSFT);
+      register_code(KC_Q);
+      unregister_code(KC_Q);
+      unregister_code(KC_LSFT);
+      unregister_code(KC_LGUI);
+    }
+    SEQ_TWO_KEYS(KC_I, KC_A) {
+      register_code(KC_LGUI);
+      register_code(KC_1);
+      unregister_code(KC_1);
+      unregister_code(KC_LGUI);
+    }
+    SEQ_TWO_KEYS(KC_I, KC_R) {
+      register_code(KC_LGUI);
+      register_code(KC_2);
+      unregister_code(KC_2);
+      unregister_code(KC_LGUI);
+    }
+    SEQ_TWO_KEYS(KC_I, KC_S) {
+      register_code(KC_LGUI);
+      register_code(KC_3);
+      unregister_code(KC_3);
+      unregister_code(KC_LGUI);
+    }
+    SEQ_TWO_KEYS(KC_I, KC_T) {
+      register_code(KC_LGUI);
+      register_code(KC_4);
+      unregister_code(KC_4);
+      unregister_code(KC_LGUI);
+    }
+    SEQ_TWO_KEYS(KC_I, KC_G) {
+      register_code(KC_LGUI);
+      register_code(KC_5);
+      unregister_code(KC_5);
+      unregister_code(KC_LGUI);
+    }
+  }
+}
